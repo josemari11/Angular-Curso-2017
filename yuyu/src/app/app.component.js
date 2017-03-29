@@ -15,7 +15,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<h1>Hola {{name}}</h1>",
+        template: "\n  <h1>Hola {{name}}</h1>\n  <p> desconocido us\u00F3 una galer\u00EDa de textos y los mezcl\u00F3 de tal manera que logr\u00F3 hacer un libro de textos especimen.</p>\n  \n  ",
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

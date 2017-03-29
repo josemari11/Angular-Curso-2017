@@ -20,6 +20,26 @@
   </head>
 
   <body>
+   <hr>
     <my-app>Loading AppComponent content here ...</my-app>
+    <hr>
+    <script type="text/javascript">
+        function habla (texto){
+            var synth = window.speechSynthesis;
+            var voces = synth.getVoices();
+            var utter = new speechSynthesisUtterance(texto);
+            utter.pitch = 1.0;
+            utter.rate = 1.0;
+            console.log(voces);
+            for (var i =0; i<voces.length;i++){
+                if(voces[i].lang == "es-ES"){
+                    utter.voice = voces [i];
+                }//if
+            }//for
+            
+            synth.speak(utter);
+        }  
+        habla("Hola, amigos que hora es ");
+    </script>
   </body>
 </html>
