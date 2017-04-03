@@ -2,6 +2,11 @@
 import { Component } from '@angular/core';
 
 
+export class Jugador {
+	id:number;
+	name:string;
+	presentacion:string;
+}
 
 // El siguiente código es para configurar la clase que hemos 
 // importado
@@ -10,7 +15,13 @@ import { Component } from '@angular/core';
   template: `
 	<h1>{{title}}</h1>
 	<h2>Hola, {{player.name}}</h2>
-	<p>Prueba de concepto, esto va a cambiar mucho...</p>
+    <div>Id:{{player.id}}</div>
+    <div>Id:{{player.presentacion}}</div>
+    <div>// enlaza este input al modelo de datos del componente
+        <label>Nombre:</label>
+        <input [(ngModel)] = "player.name" placeholder="...">
+    </div>
+    
   `,
 })
 
@@ -24,11 +35,6 @@ export class AppComponent {
 	}
 }
 
-export class Jugador {
-	id:number;
-	name:string;
-	presentacion:string;
-}
 
 
 
