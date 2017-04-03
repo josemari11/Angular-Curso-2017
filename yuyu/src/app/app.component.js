@@ -38,7 +38,7 @@ var AppComponent = (function () {
             name: "Braulio",
             presentacion: "Me presento, hale, adiós.",
             onSelect: function (player) {
-                alert("por ahora,bien.");
+                habla(player, presentacion);
             }
         };
     }

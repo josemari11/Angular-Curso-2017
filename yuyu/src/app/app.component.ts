@@ -92,7 +92,7 @@ export class AppComponent {
 		name: "Braulio",
 		presentacion: "Me presento, hale, adiós.",
 		onSelect(player: Jugador):void{
-		alert("por ahora,bien.")
+		habla(player:presentacion)
 		}
 	}
 	
