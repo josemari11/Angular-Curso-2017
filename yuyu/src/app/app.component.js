@@ -14,41 +14,43 @@ var Jugador = (function () {
 }());
 exports.Jugador = Jugador;
 var JUGADORES = [
-    { id: 1, name: "Avelina", presentacion: "Soy esquizo" },
-    { id: 2, name: "Agustín", presentacion: "Soy psicopata" },
-    { id: 3, name: "Paco", presentacion: "Soy tu padre" },
-    { id: 4, name: "Ortensia", presentacion: "Soy el del quinto" },
-    { id: 5, name: "María", presentacion: "Soy de tu pueblo" },
-    { id: 6, name: "Lucía", presentacion: "Soy agustíno" },
-    { id: 7, name: "Antxon", presentacion: "Soy de Vallecas" },
-    { id: 8, name: "Paquita", presentacion: "Soy de la mar" },
-    { id: 9, name: "Txema", presentacion: "Soy el del otro día" },
-    { id: 10, name: "Guapi", presentacion: "Soy un nazi" },
-    { id: 11, name: "Relleno", presentacion: "Soy perro flauta" },
+    { id: 1, name: "Avelina", presentacion: "Soy esquizo." },
+    { id: 2, name: "Severo", presentacion: "Limitado como un Borbón" },
+    { id: 3, name: "Placidia", presentacion: "Me pica..." },
+    { id: 4, name: "Arnulfo", presentacion: "Me maté en esa curva" },
+    { id: 5, name: "Braulia", presentacion: "Hola, hamijos" },
+    { id: 6, name: "Domicio", presentacion: "Tengo tres hipotecas" },
+    { id: 7, name: "Drusila", presentacion: "Me gusta el orfidal" },
+    { id: 8, name: "Adalberto", presentacion: "Yo antes molaba" },
+    { id: 9, name: "Gertrudis", presentacion: "Programo en Angular" },
+    { id: 10, name: "Filodoro", presentacion: "Pecador de la pradera" },
 ];
 // El siguiente código es para configurar la clase que hemos 
 // importado
 var AppComponent = (function () {
     function AppComponent() {
         this.title = "Ranking de jugadores";
-        this.name = 'mundo, qué originales estamos';
-        this.jugadores = JUGADORES; //La asignación es por valor.
+        this.name = 'mundo';
+        this.jugadores = JUGADORES; // La asignación es por valor
         this.player = {
             id: 1,
             name: "Braulio",
             presentacion: "Me presento, hale, adiós.",
-            onSelect: function (player) {
-                habla(player, presentacion);
-            }
         };
     }
+    AppComponent.prototype.onSelect = function (player) {
+        //habla(player.presentacion);
+        //esto es una forma de acceder a objetos que están en espacio de nombres global(o sea,
+        //pertenecen al objeto windoe ,porque la línea anterio no funciona)
+        window['habla'](player.presentacion);
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n\t<h1>{{title}}</h1>\n\t<hr>\n\t<ul class=\"jugadores\">\n\t<!-- ngFor es un bucle para Angular-->\n\t<li *ngFor=\"let player of jugadores\" \n\t(click)=\"onSelect(jugador)\">\n\t\t<span class=\"bagde\">{{player.id}}</span>\n\t\t{{player.name}}\n\t</li>\n\t</ul>\n\t<hr>\n\t<h2>Hola, {{player.name}}</h2>\n    <div>Id:{{player.id}}</div>\n    <div><h2>Presentaci\u00F3n:{{player.presentacion}}</h2></div>\n    <div> <!--enlaza este input al modelo de datos del componente-->\n        <label>Nombre:</label>\n        <input class=\"form-control\" [(ngModel)] = \"player.name\" placeholder=\"...\"><br>\n\t\t <label>Presentaci\u00F3n:</label>\n\t\t<textarea class=\"form-control\" [(ngModel)] =\"player.presentacion\" placeholder=\"...\"></textarea>\n    </div>\n  ",
-        styles: ["\n\t\t.selected{\n\t\t\n\t\t}\n\t\t.jugadores{\n\t\t\tlist-style:none;\n\t\t\tpadding:10px;\n\t\t}\n\t\t.jugadores li{\n\t\t\tbackground-color:#EEE;\n\t\t\theight:40px;\n\t\t\tline-height:40px;\n\t\t\tborder-bottom: 1px solid black;\n\t\t}\n\t\t.jugadores li:hover{\n\t\tbackground-color:white;\n\t\t}\n\t\t.jugadores li.selected:hover{\n\t\tbackground-color:white;\n\t\t}\n\t\t.jugadores .text{\n\t\t}\n\t\t.jugadores .bagde{\n\t\tborder-radius:0;\n\t\twidth:50px \n\t\theight:40px;\n\t\tborder-bottom:1px solid #ccc;\n\t\tpadding:20px;\n\t\tbackground-color:#606;\n\t\tcolor:white;\n\t\t\n\t\t}\t\t\n\t\t\n  "]
+        template: "\n\t<h1>{{title}}</h1>\n\t<hr>\n\t<ul class=\"jugadores\">\n\t\t<li *ngFor=\"let player of jugadores\" (click)=\"onSelect(player)\" >\n\t\t\t<span class=\"badge\">{{player.id}}</span> {{player.name}}\n\t\t</li>\n\t</ul>\n\t<hr>\n\t<h2>Hola, {{player.name}}</h2>\n\t<div>Id: {{player.id}}</div>\n\t<div>\n\t\t<label>Nombre:</label>\n\t\t<input [(ngModel)] = \"player.name\" placeholder=\"...\" class=\"form-control\">\n\t</div>\n\t<div>\n\t\t<label>Presentaci\u00F3n:</label>\n\t\t<textarea [(ngModel)] = \"player.presentacion\" class=\"form-control\"></textarea>\n\t</div>\n  ",
+        styles: ["\n\t.selected{}\n\t.jugadores{\n\t\tlist-style-type:none;\n\t\tpadding:10px;\n\t}\n\t.jugadores li{\n\t\tbackground-color: #EEE;\n\t\theight: 40px; \n\t\tline-height: 40px;\n\t\tborder-bottom: 1px solid #DDD;\n\t}\n\t.jugadores li.selected:hover{\n\t\tbackground-color: #FC0;\n\t}\n\t.jugadores li:hover{\n\t\tbackground-color: #FC0;\n\t}\n\t.jugadores .text{}\n\t.jugadores .badge{\n\t\tborder-radius:0;\n\t\twidth:40px; height: 40px;\n\t\tline-height: 40px;\n\t\tborder-bottom: 1px solid #CCC;\n\t\tpadding:0;\n\t\tbackground-color: #666;\n\t}\n  "],
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
