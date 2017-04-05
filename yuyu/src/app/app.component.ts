@@ -1,11 +1,7 @@
 // Importamos la clase Component del paquete angular/core
 import { Component } from '@angular/core';
 
-export class Jugador {
-	id:number;
-	name:string;
-	presentacion:string;
-}
+import { Jugador } from './jugador';
 
 const JUGADORES: Jugador[] = [
 	{id:1, name:"Avelina", presentacion:"Soy esquizo."},
@@ -32,17 +28,10 @@ const JUGADORES: Jugador[] = [
 			<span class="badge">{{player.id}}</span> {{player.name}}
 		</li>
 	</ul>
+	
 	<hr>
-	<h2>Hola, {{player.name}}</h2>
-	<div>Id: {{player.id}}</div>
-	<div>
-		<label>Nombre:</label>
-		<input [(ngModel)] = "player.name" placeholder="..." class="form-control">
-	</div>
-	<div>
-		<label>Presentación:</label>
-		<textarea [(ngModel)] = "player.presentacion" class="form-control"></textarea>
-	</div>
+	
+	<jugador-detalle [jugador]="selPlayer"></jugador-detalle>
   `,
   styles: [`
 	.selected{}
@@ -76,17 +65,25 @@ const JUGADORES: Jugador[] = [
 
 export class AppComponent { 
 	title = "Ranking de jugadores";
+	berenjenas = "Wittgentstein vs Heidegger";
 	name = 'mundo';
 	jugadores = JUGADORES;	// La asignación es por valor
-	player:Jugador={
+	
+	selPlayer: Jugador;		// el jugador seleccionado de la lista
+	
+	/*player:Jugador={
 		id: 1,
 		name: "Braulio",
 		presentacion: "Me presento, hale, adiós.",
-	}
+	}*/
+	
 	onSelect(player: Jugador): void{
+		this.selPlayer = player;
 		//habla(player.presentacion);
-		//esto es una forma de acceder a objetos que están en espacio de nombres global(o sea,
-		//pertenecen al objeto windoe ,porque la línea anterio no funciona)
+		// Esto es un truco guarro para acceder a objetos que
+		// están en el espacio de nombres global (o sea, que 
+		// pertenecen al objeto window), porque la línea anterior
+		// no funciona
 		window['habla'](player.presentacion);
 	}
 }
