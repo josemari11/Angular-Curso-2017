@@ -24,24 +24,6 @@
 	<hr>
     <my-app>Cargando componente...</my-app>
 	<hr>
-	
-	<script>
-	function habla(texto){
-		var synth = window.speechSynthesis;
-		var voces = synth.getVoices();
-		var utter = new SpeechSynthesisUtterance(texto);
-		utter.pitch = 1.0;
-		utter.rate = 1.0;
-		console.log(voces);
-		for (var i=0; i<voces.length; i++){
-			if(voces[i].lang == "en-US"){
-				utter.voice = voces[i];
-			}
-		}
-		synth.speak(utter);
-	}
-	habla("Hola, amigos, bienvenidos al curso de Angular");
-	</script>
   </body>
 </html>
 

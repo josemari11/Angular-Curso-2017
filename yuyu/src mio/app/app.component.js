@@ -9,16 +9,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var boca_1 = require("./boca");
 var JUGADORES = [
-    { id: 1, puntos: 200000, name: "Avelina", presentacion: "Soy esquizo.", estado: 1 },
-    { id: 2, puntos: 200000, name: "Severo", presentacion: "Limitado como un Borbón", estado: 1 },
-    { id: 3, puntos: 200000, name: "Placidia", presentacion: "Me pica...", estado: 1 },
-    { id: 4, puntos: 200000, name: "Arnulfo", presentacion: "Me maté en esa curva", estado: 1 },
-    { id: 5, puntos: 200000, name: "Braulia", presentacion: "Hola, hamijos", estado: 1 },
-    { id: 6, puntos: 200000, name: "Domicio", presentacion: "Tengo tres hipotecas", estado: 1 },
-    { id: 7, puntos: 200000, name: "Drusila", presentacion: "Me gusta el orfidal", estado: 1 },
-    { id: 8, puntos: 200000, name: "Adalberto", presentacion: "Yo antes molaba", estado: 1, },
-    { id: 9, puntos: 200000, name: "Gertrudis", presentacion: "Programo en Angular", estado: 1 },
-    { id: 10, puntos: 200000, name: "Filodoro", presentacion: "Pecador de la pradera", estado: 1 },
+    { id: 1, name: "Avelina", presentacion: "Soy esquizo." },
+    { id: 2, name: "Severo", presentacion: "Limitado como un Borbón" },
+    { id: 3, name: "Placidia", presentacion: "Me pica..." },
+    { id: 4, name: "Arnulfo", presentacion: "Me maté en esa curva" },
+    { id: 5, name: "Braulia", presentacion: "Hola, hamijos" },
+    { id: 6, name: "Domicio", presentacion: "Tengo tres hipotecas" },
+    { id: 7, name: "Drusila", presentacion: "Me gusta el orfidal" },
+    { id: 8, name: "Adalberto", presentacion: "Yo antes molaba" },
+    { id: 9, name: "Gertrudis", presentacion: "Programo en Angular" },
+    { id: 10, name: "Filodoro", presentacion: "Pecador de la pradera" },
 ];
 var AppComponent = (function () {
     function AppComponent() {
@@ -34,27 +34,6 @@ var AppComponent = (function () {
         // de dicha clase tenemos que usar "this."
         this.selPlayer = player;
         this.altavoz.habla(player.presentacion);
-    };
-    AppComponent.prototype.newPlayer = function () {
-        // Crear un nuevo id al azar
-        var idj = parseInt(Math.random() * 10000000);
-        var obj = {
-            id: idj,
-            estado: 1,
-            puntos: 0,
-            nombre: "",
-            presentacion: "",
-        };
-        // Añado este array de jugadores al array de jugadores de esta clase
-        this.jugadores.push(obj);
-        // Ahora quiero que aparezca el formulario para editarlo
-        //Lo hago invocando la función onSelect,pasándole el objeto que acabo de crear
-        this.onSelect();
-        obj;
-        log();
-        void {
-            this: .jugadores
-        };
     };
     return AppComponent;
 }());

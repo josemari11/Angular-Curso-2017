@@ -4,6 +4,5 @@ export class Jugador {
 	id: 			number;
 	name: 			string;
 	presentacion: 	string;
-	puntos:			number;
-    estado:         number;
+	puntos: number;
 }

@@ -1,0 +1,11 @@
+	<h1>{{title}}</h1>
+	<hr>
+	<ul class="jugadores">
+		<li *ngFor="let player of jugadores" (click)="onSelect(player)" >
+			<span class="badge">{{player.id}}</span> {{player.name}}
+		</li>
+	</ul>
+	
+	<hr>
+	
+	<jugador-detalle [jugador]="selPlayer"></jugador-detalle>

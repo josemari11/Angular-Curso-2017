@@ -5,5 +5,4 @@ export class Jugador {
 	name: 			string;
 	presentacion: 	string;
 	puntos:			number;
-    estado:         number;
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Angular QuickStart</title>
     <base href="/">
     <meta charset="UTF-8">
@@ -16,12 +15,41 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
     <script src="systemjs.config.js"></script>
-</head>
+    <script>
+      System.import('main.js').catch(function(err){ console.error(err); });
+    </script>
+  </head>
 
-<body>
-    <hr>
+  <body>
+	<hr>
     <my-app>Cargando componente...</my-app>
-    <hr>
-</body>
-
+	<hr>
+	<script src="dfkgjhdfgkj"></script>
+	<script>
+	var yuyu = 5;
+	function habla(texto){
+		var synth = window.speechSynthesis;
+		var voces = synth.getVoices();
+		var utter = new SpeechSynthesisUtterance(texto);
+		utter.pitch = 1.0;
+		utter.rate = 1.0;
+		console.log(voces);
+		for (var i=0; i<voces.length; i++){
+			if(voces[i].lang == "en-US"){
+				utter.voice = voces[i];
+			}
+		}
+		synth.speak(utter);
+	}
+	//habla("Hola, amigos, bienvenidos al curso de Angular");
+	</script>
+  </body>
 </html>
+
+
+
+
+
+
+
+

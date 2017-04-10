@@ -1,0 +1,32 @@
+/* ... */
+	.selected{}
+	.jugadores{
+		list-style-type:none;
+		padding:10px;
+	}
+	.jugadores li{
+		background-color: #EEE;
+		height: 40px; 
+		line-height: 40px;
+		border-bottom: 1px solid #DDD;
+	}
+	.jugadores li.selected:hover{
+		background-color: #FC0;
+	}
+	.jugadores li:hover{
+		background-color: #FC0;
+	}
+	.jugadores .text{}
+	.jugadores .badge{
+		border-radius:0;
+		width:40px; height: 40px;
+		line-height: 40px;
+		border-bottom: 1px solid #CCC;
+		padding:0;
+		background-color: #666;
+	}
+    .cajas{
+        margin: 10px;
+        padding: 10px;
+        background-color: aqua;
+}

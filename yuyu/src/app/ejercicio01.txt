@@ -1,0 +1,26 @@
+EJERCICIO
+=========================================
+Ahora mismo la aplicación gestiona el id y el nombre de los jugadores.
+
+Haz que se pueda gestionar también el mensaje de presentación.
+
+Y, ya puestos, que se pueda gestionar una propiedad nueva llamada puntos!!!
+
+
+EJERCICIO
+=========================================
+en jugador-detalle.component.ts hay un template con html que tienes que sacar a un archivo externo. 
+
+Luego dale unos estilos css para adecentar un poco ese formulario.
+
+
+
+
+
+
+
+
+
+
+
+

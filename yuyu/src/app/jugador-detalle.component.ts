@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-// Tengo que importar la definici�n de la clase Jugador, porque
+// Tengo que importar la definición de la clase Jugador, porque
 // voy a trabajar con ella
 import { Jugador } from './jugador';
 
@@ -15,7 +15,22 @@ import { Jugador } from './jugador';
 				<label>Nombre: </label>
 				<input [(ngModel)]="jugador.name" />
 			</div>
-		</div>
+            <div class="cajas">
+            <label>Presentación: </label>
+                <input [(ngModel)]="jugador.presentacion" />
+            </div>
+            <div class="cajas">
+            <label>Puntos: </label>
+                <input [(ngModel)]="jugador.puntos" />
+		      </div>
+            <label>Estado</label>
+            <select  [(ngModel)]="jugador.estado"/>
+            <option value="1">Pendiente de activación</option>
+            <option value="2">Activado</option>
+            <option value="3">Suspendido</option>
+            <option value="4">Dado de baja</option>
+            </select>
+        </div>
 	`
 })
 
