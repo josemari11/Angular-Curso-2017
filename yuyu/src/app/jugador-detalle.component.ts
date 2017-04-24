@@ -1,43 +1,46 @@
 import { Component, Input } from '@angular/core';
-// Tengo que importar la definición de la clase Jugador, porque
-// voy a trabajar con ella
 import { Jugador } from './jugador';
 
 @Component({
 	selector: 'jugador-detalle',
-	template: `
-		<div *ngIf="jugador">
-			<h2>Propiedades de {{jugador.name}}</h2>
-			<div>
-				<label>Id: </label>{{jugador.id}}
-			</div>
-			<div>
-				<label>Nombre: </label>
-				<input [(ngModel)]="jugador.name" />
-			</div>
-            <div class="cajas">
-            <label>Presentación: </label>
-                <input [(ngModel)]="jugador.presentacion" />
-            </div>
-            <div class="cajas">
-            <label>Puntos: </label>
-                <input [(ngModel)]="jugador.puntos" />
-		      </div>
-            <label>Estado</label>
-            <select  [(ngModel)]="jugador.estado"/>
-            <option value="1">Pendiente de activación</option>
-            <option value="2">Activado</option>
-            <option value="3">Suspendido</option>
-            <option value="4">Dado de baja</option>
-            </select>
-        </div>
-	`
+	templateUrl: './html/jugador-detalle.component.html',
+	styleUrls: ['./css/jugador-detalle.component.css']
 })
 
 export class JugadorDetalleComponent {
 	// Le decimos a angular que jugador es una propiedad de tipo
 	// Jugador, y que se gestiona como un input
 	@Input() jugador: Jugador;
+	
+	guardar(): void{
+		// Tendremos que hacer una validación de los campos 
+		// del formulario antes de actualizar el modelo de datos
+		var errores = "";
+		
+		// Referencias a elementos de la página
+		var nombre = document.getElementById("ctrlNombre");
+		var puntos = document.getElementById("ctrlPuntos");
+		var estado = document.getElementById("ctrlEstado");
+		var presentacion = document.getElementById("ctrlPresentacion");
+		
+		// Empezamos con las validaciones
+		if(nombre.value == ""){
+			errores = errores + "El nombre es obligatorio\n";
+		}
+		if(puntos.value == ""){
+			errores = errores + "Debes introducir los puntos\n";
+		}
+		if(presentacion.value == ""){
+			errores = errores + "No presrentarse es de mala educación\n";
+		}
+		
+		// Llegados a este punto, si errores sigue vacío, es porque
+		// no hemos tenido errores de validación. Si no, es que 
+		// ha habido algún error
+		if(errores != ""){
+			alert(errores);
+		}
+	}
 }
 
 

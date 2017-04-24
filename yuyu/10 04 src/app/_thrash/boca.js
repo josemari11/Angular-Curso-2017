@@ -9,7 +9,7 @@ var Boca = (function () {
         utter.pitch = 1.0;
         utter.rate = 1.0;
         for (var i = 0; i < voces.length; i++) {
-            if (voces[i].lang == "es-ES") {
+            if (voces[i].lang == "en-US") {
                 utter.voice = voces[i];
             }
         }

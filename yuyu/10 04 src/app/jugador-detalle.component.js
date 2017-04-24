@@ -9,36 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+// Tengo que importar la definición de la clase Jugador, porque
+// voy a trabajar con ella
 var jugador_1 = require("./jugador");
 var JugadorDetalleComponent = (function () {
     function JugadorDetalleComponent() {
     }
-    JugadorDetalleComponent.prototype.guardar = function () {
-        // Tendremos que hacer una validación de los campos 
-        // del formulario antes de actualizar el modelo de datos
-        var errores = "";
-        // Referencias a elementos de la página
-        var nombre = document.getElementById("ctrlNombre");
-        var puntos = document.getElementById("ctrlPuntos");
-        var estado = document.getElementById("ctrlEstado");
-        var presentacion = document.getElementById("ctrlPresentacion");
-        // Empezamos con las validaciones
-        if (nombre.value == "") {
-            errores = errores + "El nombre es obligatorio\n";
-        }
-        if (puntos.value == "") {
-            errores = errores + "Debes introducir los puntos\n";
-        }
-        if (presentacion.value == "") {
-            errores = errores + "No presrentarse es de mala educación\n";
-        }
-        // Llegados a este punto, si errores sigue vacío, es porque
-        // no hemos tenido errores de validación. Si no, es que 
-        // ha habido algún error
-        if (errores != "") {
-            alert(errores);
-        }
-    };
     return JugadorDetalleComponent;
 }());
 __decorate([
@@ -48,8 +24,7 @@ __decorate([
 JugadorDetalleComponent = __decorate([
     core_1.Component({
         selector: 'jugador-detalle',
-        templateUrl: './html/jugador-detalle.component.html',
-        styleUrls: ['./css/jugador-detalle.component.css']
+        template: "\n\t\t<div *ngIf=\"jugador\">\n\t\t\t<h2>Propiedades de {{jugador.name}}</h2>\n\t\t\t<div>\n\t\t\t\t<label>Id: </label>{{jugador.id}}\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<label>Nombre: </label>\n\t\t\t\t<input [(ngModel)]=\"jugador.name\" />\n\t\t\t</div>\n            <div class=\"cajas\">\n            <label>Presentaci\u00F3n: </label>\n                <input [(ngModel)]=\"jugador.presentacion\" />\n            </div>\n            <div class=\"cajas\">\n            <label>Puntos: </label>\n                <input [(ngModel)]=\"jugador.puntos\" />\n\t\t      </div>\n            <label>Estado</label>\n            <select  [(ngModel)]=\"jugador.estado\"/>\n            <option value=\"1\">Pendiente de activaci\u00F3n</option>\n            <option value=\"2\">Activado</option>\n            <option value=\"3\">Suspendido</option>\n            <option value=\"4\">Dado de baja</option>\n            </select>\n        </div>\n\t"
     })
 ], JugadorDetalleComponent);
 exports.JugadorDetalleComponent = JugadorDetalleComponent;
