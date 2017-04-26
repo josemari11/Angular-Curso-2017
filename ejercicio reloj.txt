@@ -1,0 +1,27 @@
+EJERCICIO DEL PROYECTO DEL RELOJ
+==============================================
+Hay que crear dos componentes en angular:
+1- Un reloj digital. Muestra la hora en formato de números
+2- Un reloj analógico: la muestra en un círculo con una línea para 
+   la hora, otra para los minutos y una tercera para los segundos
+   
+RECURSOS PARA EL RELOJ ANALÓGICO
+--------------------------------
+La vista de este reloj se creará usando el objeto canvas de 
+html/javascript. Una pequeña referencia para esto la puedes encontrar
+en esta url:
+https://www.w3schools.com/html/html5_canvas.asp
+
+Básicamente, si en el template html tienes esto:
+
+<canvas id="lienzo" width="200" height="200"></canvas>
+
+puedes dibujar en el canvas mediante javascript:
+
+var c = document.getElementById("lienzo");
+var ctx = c.getContext("2d");	// esto siempre
+ctx.beginPath();
+ctx.arc(100,100,50,0,2*Math.PI);
+ctx.stroke();
+
+

@@ -1,4 +1,4 @@
-/* ESTILOS PARA EL COMPONENTE DEL RELOJ */
+/* ESTILOS PARA EL COMPONENTE DEL RELOJ DIGITAL */
 .reloj{
 	width: 250px;
 	height: 120px;
@@ -7,7 +7,7 @@
 	position: relative;
 	background-color: #005500;
 	font-family: Arial;
-	font-size: 80px;
+	font-size: 50px;
 	line-height: 120px;
 	text-align: center;
 	color:#00FF66;
