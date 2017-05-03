@@ -23,13 +23,13 @@ var JugadorDetalleComponent = (function () {
         var estado = document.getElementById("ctrlEstado");
         var presentacion = document.getElementById("ctrlPresentacion");
         // Empezamos con las validaciones
-        if (nombre.value == "") {
+        if (nombre['value'] == "") {
             errores = errores + "El nombre es obligatorio\n";
         }
-        if (puntos.value == "") {
+        if (puntos['value'] == "") {
             errores = errores + "Debes introducir los puntos\n";
         }
-        if (presentacion.value == "") {
+        if (presentacion['value'] == "") {
             errores = errores + "No presrentarse es de mala educación\n";
         }
         // Llegados a este punto, si errores sigue vacío, es porque

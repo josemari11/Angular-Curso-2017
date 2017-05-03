@@ -19,30 +19,30 @@ import { JugadorService} from './Jugador.service';
 
 export class AppComponent implements OnInit { 
 	title = "Ranking de jugadores...";
-	jugadores: Jugador[]; // Un array de objetos jugador
+	jugadores = Jugador[]; // Un array de objetos jugador
 	selPlayer: Jugador; // el jugador seleccionado de la lista
 	altavoz: Boca = new Boca();
-    // INYECTAR EL SERVIVIO: Esto se hace en el constructor de la clase.
-    // Se lo pasamoscomo propiedad privada
-    constructor(private jugadorService:JugadorService){
-        console.log("Constructor");
-    }
-	
+    //Con declare le digo a angular que tenga en cuenta que 
+    //var jQuery y var $ se refieren  al ámbito global
+    //declare var jQuery:any;
+    //declare var $:any;
+
+	constructor(){
+		// Este método se ejecuta automáticamente cuando un
+		// componente se instancia en la página. 
+		console.log("Hola, amigos, acabo de nacer");
+       
+	}
 	
 	ngOnInit():void{
 		// Este método se ejecuta después de constructor(),
 		// cuando todas las clases del componente han terminado
 		// de inicializarse
-		console.log("APP inicializada");
-        this.getJugadores();
-        
+		console.log("Hola, amigos, he terminado de iniciarme");
         //Uso de Jquery
         //window['$'](".jugadores").css("transform","rotate(10deg)");
 	}
 		
-    getJugadores(): void{
-        this.jugadores = this.jugadorService.getJugadores();
-    }
 	onSelect(player: Jugador): void{
 		this.selPlayer = player;
 		this.altavoz.habla(player.presentacion);

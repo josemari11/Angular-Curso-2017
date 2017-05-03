@@ -10,29 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importamos la clase Component del paquete angular/core
 var core_1 = require("@angular/core");
+var jugador_1 = require("./jugador");
 var boca_1 = require("./boca");
 var Jugador_service_1 = require("./Jugador.service");
 //Decorador Ajusta varias propiedades de nuestro componente
 var AppComponent = (function () {
-    // INYECTAR EL SERVIVIO: Esto se hace en el constructor de la clase.
-    // Se lo pasamoscomo propiedad privada
-    function AppComponent(jugadorService) {
-        this.jugadorService = jugadorService;
+    //Con declare le digo a angular que tenga en cuenta que 
+    //var jQuery y var $ se refieren  al ámbito global
+    //declare var jQuery:any;
+    //declare var $:any;
+    function AppComponent() {
         this.title = "Ranking de jugadores...";
+        this.jugadores = jugador_1.Jugador[]; // Un array de objetos jugador
         this.altavoz = new boca_1.Boca();
-        console.log("Constructor");
+        // Este método se ejecuta automáticamente cuando un
+        // componente se instancia en la página. 
+        console.log("Hola, amigos, acabo de nacer");
     }
     AppComponent.prototype.ngOnInit = function () {
         // Este método se ejecuta después de constructor(),
         // cuando todas las clases del componente han terminado
         // de inicializarse
-        console.log("APP inicializada");
-        this.getJugadores();
+        console.log("Hola, amigos, he terminado de iniciarme");
         //Uso de Jquery
         //window['$'](".jugadores").css("transform","rotate(10deg)");
-    };
-    AppComponent.prototype.getJugadores = function () {
-        this.jugadores = this.jugadorService.getJugadores();
     };
     AppComponent.prototype.onSelect = function (player) {
         this.selPlayer = player;
@@ -97,7 +98,7 @@ AppComponent = __decorate([
         // ESto hay que ponerlo cuando tiemos de servicios para obtener los datos
         providers: [Jugador_service_1.JugadorService],
     }),
-    __metadata("design:paramtypes", [Jugador_service_1.JugadorService])
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=app.componentB.js.map
