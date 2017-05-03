@@ -12,11 +12,7 @@ import { JUGADORES } from './mock-jugadores';
 export class JugadorService{
     // Esta clase tiene un método  llamado getjugadores que devuelve 
     // un array de objetos de tipo Jugadores
-   /* getJugadores(): Jugador[]{
+    getJugadores(): Jugador[]{
     return JUGADORES;
-    }*/
-    
-    getJugadores() :Promise <Jugador []>{
-        return Promise.resolve(JUGADORES);
     }
 }

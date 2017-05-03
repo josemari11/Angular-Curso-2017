@@ -17,11 +17,8 @@ var JugadorService = (function () {
     }
     // Esta clase tiene un método  llamado getjugadores que devuelve 
     // un array de objetos de tipo Jugadores
-    /* getJugadores(): Jugador[]{
-     return JUGADORES;
-     }*/
     JugadorService.prototype.getJugadores = function () {
-        return Promise.resolve(mock_jugadores_1.JUGADORES);
+        return mock_jugadores_1.JUGADORES;
     };
     return JugadorService;
 }());
@@ -29,4 +26,4 @@ JugadorService = __decorate([
     core_1.Injectable()
 ], JugadorService);
 exports.JugadorService = JugadorService;
-//# sourceMappingURL=Jugador.service.js.map
+//# sourceMappingURL=jugador.service_c.js.map

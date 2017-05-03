@@ -41,17 +41,7 @@ export class AppComponent implements OnInit {
 	}
 		
     getJugadores(): void{
-       //ESto es para la versión síncrona de jugador.services.ts
-       // this.jugadores = this.jugadorService.getJugadores();
-            
-        
-       //Esto es para la versión asíncrona de ES6
-        this.jugadorService.getJugadores().then( jugadores =>
-        this.jugadores =jugadores);
-        
-        //Esto es la forma antigua de ES5
-        //var th:any = this;
-        //this.jugadorService.getJugadores() ---->no está terminado
+        this.jugadores = this.jugadorService.getJugadores();
     }
 	onSelect(player: Jugador): void{
 		this.selPlayer = player;

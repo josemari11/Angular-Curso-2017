@@ -32,16 +32,7 @@ var AppComponent = (function () {
         //window['$'](".jugadores").css("transform","rotate(10deg)");
     };
     AppComponent.prototype.getJugadores = function () {
-        //ESto es para la versión síncrona de jugador.services.ts
-        // this.jugadores = this.jugadorService.getJugadores();
-        var _this = this;
-        //Esto es para la versión asíncrona de ES6
-        this.jugadorService.getJugadores().then(function (jugadores) {
-            return _this.jugadores = jugadores;
-        });
-        //Esto es la forma antigua de ES5
-        //var th:any = this;
-        //this.jugadorService.getJugadores()
+        this.jugadores = this.jugadorService.getJugadores();
     };
     AppComponent.prototype.onSelect = function (player) {
         this.selPlayer = player;
@@ -109,4 +100,4 @@ AppComponent = __decorate([
     __metadata("design:paramtypes", [Jugador_service_1.JugadorService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=app.component_c.js.map
