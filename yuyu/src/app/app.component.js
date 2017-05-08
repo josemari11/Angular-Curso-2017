@@ -10,12 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importamos la clase Component del paquete angular/core
 var core_1 = require("@angular/core");
+var jugador_service_1 = require("./jugador.service");
 var boca_1 = require("./boca");
-var Jugador_service_1 = require("./Jugador.service");
-//Decorador Ajusta varias propiedades de nuestro componente
 var AppComponent = (function () {
-    // INYECTAR EL SERVIVIO: Esto se hace en el constructor de la clase.
-    // Se lo pasamoscomo propiedad privada
+    //jugadorService: JugadorService;
+    // INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
+    // clase. Se lo pasamos como propiedad privada
     function AppComponent(jugadorService) {
         this.jugadorService = jugadorService;
         this.title = "Ranking de jugadores...";
@@ -23,25 +23,20 @@ var AppComponent = (function () {
         console.log("Constructor");
     }
     AppComponent.prototype.ngOnInit = function () {
-        // Este método se ejecuta después de constructor(),
-        // cuando todas las clases del componente han terminado
-        // de inicializarse
-        console.log("APP inicializada");
+        console.log("Componente inicializado");
         this.getJugadores();
-        //Uso de Jquery
-        //window['$'](".jugadores").css("transform","rotate(10deg)");
     };
     AppComponent.prototype.getJugadores = function () {
-        //ESto es para la versión síncrona de jugador.services.ts
-        // this.jugadores = this.jugadorService.getJugadores();
-        var _this = this;
-        //Esto es para la versión asíncrona de ES6
-        this.jugadorService.getJugadores().then(function (jugadores) {
-            return _this.jugadores = jugadores;
+        // Esto es para la versión síncrona...
+        //this.jugadores = this.jugadorService.getJugadores();
+        // Esto es para la versión asíncrona
+        //this.jugadorService.getJugadores().then( jugadores => this.jugadores = jugadores );
+        // Y esto es para la versión vieja de la versión 
+        // asíncrona
+        var th = this;
+        this.jugadorService.getJugadores().then(function (yuyu) {
+            th.jugadores = yuyu;
         });
-        //Esto es la forma antigua de ES5
-        //var th:any = this;
-        //this.jugadorService.getJugadores()
     };
     AppComponent.prototype.onSelect = function (player) {
         this.selPlayer = player;
@@ -53,8 +48,7 @@ var AppComponent = (function () {
             return;
         for (var indice in this.jugadores) {
             if (this.jugadores[indice].id == player.id) {
-                //comentar para errores
-                this.jugadores.splice(indice, 1);
+                this.jugadores.splice(parseInt(indice), 1);
                 this.selPlayer = null;
             }
         }
@@ -99,14 +93,13 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        //solo puede colgar de una plantilla html
         templateUrl: './html/app.component.html',
-        //puede tener varias hojas de estilos
         styleUrls: ['./css/app.component.css'],
-        // ESto hay que ponerlo cuando tiemos de servicios para obtener los datos
-        providers: [Jugador_service_1.JugadorService],
+        // Esto hay que ponerlo cuando tiramos de servicios para 
+        // obtener los datos
+        providers: [jugador_service_1.JugadorService],
     }),
-    __metadata("design:paramtypes", [Jugador_service_1.JugadorService])
+    __metadata("design:paramtypes", [jugador_service_1.JugadorService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

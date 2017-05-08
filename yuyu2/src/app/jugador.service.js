@@ -7,18 +7,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var mock_jugadores_1 = require("./mock-jugadores");
-//Esto hay que ponerlo por narices. Le dice a angular que emita 
-//metadatos para el servicio. por si más tarde hay que añadirle dependencias
-//al igual que @components hay que añadirlo, aunque este vacio
+// Esto hay que ponerlo por narices. Le dice a angular que emita metadatos para el servicio, por si m�s tarde hay que a�adirle dependencias
 var JugadorService = (function () {
-    // Este servicio podría obtener los datos de cualquier sitiio:
-    //servicios web, localStorage, o un archivo de datos mockeados, p.el;
+    // Este servicio podr�a obtener los datos de cualquier sitio: servicios web, localStorage, o un archivo de datos mockeados, p.ej
     function JugadorService() {
     }
-    // Esta clase tiene un método  llamado getjugadores que devuelve 
-    // un array de objetos de tipo Jugadores
+    // Esta clase tiene un m�todo llado getJugadores que devuelve
+    // un array de objetos de tipo Jugador
+    /*getJugadores(): Jugador[] {
+        // Versi�n s�ncrona: bloquea la interfaz hasta que se
+        // hayan inyectado los jugadores
+        return JUGADORES;
+    }*/
+    // Versi�n de la anterior, usando promises. Esta es una 
+    // versi�n as�ncrona
     JugadorService.prototype.getJugadores = function () {
-        return mock_jugadores_1.JUGADORES;
+        return Promise.resolve(mock_jugadores_1.JUGADORES);
     };
     return JugadorService;
 }());
@@ -26,4 +30,4 @@ JugadorService = __decorate([
     core_1.Injectable()
 ], JugadorService);
 exports.JugadorService = JugadorService;
-//# sourceMappingURL=jugador.service_c.js.map
+//# sourceMappingURL=jugador.service.js.map

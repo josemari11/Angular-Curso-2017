@@ -9,16 +9,8 @@ import { JUGADORES } from './mock-jugadores';
 export class JugadorService{
 	// Esta clase tiene un método llado getJugadores que devuelve
 	// un array de objetos de tipo Jugador
-	/*getJugadores(): Jugador[] {
-		// Versión síncrona: bloquea la interfaz hasta que se
-		// hayan inyectado los jugadores
+	getJugadores(): Jugador[] {
 		return JUGADORES;
-	}*/
-	
-	// Versión de la anterior, usando promises. Esta es una 
-	// versión asíncrona
-	getJugadores(): Promise<Jugador[]>{
-		return Promise.resolve(JUGADORES);
 	}
 }
 

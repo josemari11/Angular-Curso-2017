@@ -7,7 +7,7 @@ import { Boca } from './boca';
 
 
 @Component({
-  selector: 'my-app',
+  selector: 'my-jugadores',
   templateUrl: './html/app.component.html',
   styleUrls: ['./css/app.component.css'],
   // Esto hay que ponerlo cuando tiramos de servicios para 
@@ -16,7 +16,7 @@ import { Boca } from './boca';
 })
 
 
-export class AppComponent implements OnInit { 
+export class JugadoresComponent implements OnInit { 
 	title = "Ranking de jugadores...";
 	jugadores: Jugador[]; 	// un array de objetos Jugador
 	selPlayer: Jugador;		// el jugador seleccionado de la lista

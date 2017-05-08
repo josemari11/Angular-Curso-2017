@@ -1,0 +1,56 @@
+EJERCICIO
+=========================================
+Ahora mismo la aplicación gestiona el id y el nombre de los jugadores.
+
+Haz que se pueda gestionar también el mensaje de presentación.
+
+Y, ya puestos, que se pueda gestionar una propiedad nueva llamada puntos!!!
+
+
+EJERCICIO
+=========================================
+en jugador-detalle.component.ts hay un template con html que tienes que sacar a un archivo externo. 
+
+Luego dale unos estilos css para adecentar un poco ese formulario.
+
+
+EJERCICIO
+=========================================
+Vamos a añadir una propiedad más al jugador: estado. Es de tipo numérico, y vendrá a ser algo así:
+1 -> Pendiente de activación
+2 -> Activado
+3 -> Suspendido
+4 -> Dado de baja
+Estos estados se representarán en el formulario mediante un 
+<select>
+	<option value="1">Pendiente de activación</option>
+	<option value="2">Activado</option>
+	<option value="3">Suspendido</option>
+	<option value="4">Dado de baja</option>
+</select>
+Pista: tendrás que hacer algún cambio en los siguientes archivos:
+jugador-detalle.component.html
+jugador.ts
+app.component.ts (en el array de los datos de jugadores)
+
+
+EJERCICIO
+=========================================
+Al lado del botón Nuevo, crea otro botón con el texto Log...
+Al pulsar ese botón, debe salir en la consola todo el array 
+de jugadores
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+	<h1>{{title}}</h1>
+	<hr>
+	<ul class="jugadores">
+		<li *ngFor="let player of jugadores" (click)="onSelect(player)" >
+			<span class="badge">{{player.id}}</span> {{player.name}}
+			<button class="btnBorrar" type="button" (click)="onDelete(player)">Borrar</button>
+		</li>
+	</ul>
+	<button type="button" (click)="newPlayer()">Nuevo</button>
+	<button type="button" (click)="log()">Log...</button>
+	 | 
+	<button type="button" (click)="guardar()">Guardar datos</button>
+	<button type="button" (click)="cargar()">Cargar datos</button>
+	<hr>
+	
+	<jugador-detalle [jugador]="selPlayer"></jugador-detalle>
+	
+	
+	
+	
+	

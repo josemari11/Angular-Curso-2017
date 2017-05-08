@@ -18,37 +18,28 @@ import { Boca } from './boca';
 
 export class AppComponent implements OnInit { 
 	title = "Ranking de jugadores...";
-	jugadores: Jugador[]; 	// un array de objetos Jugador
+	jugadores = Jugador[]; 	// un array de objetos Jugador
 	selPlayer: Jugador;		// el jugador seleccionado de la lista
 	altavoz: Boca = new Boca();
-	//jugadorService: JugadorService;
 	
-	// INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
-	// clase. Se lo pasamos como propiedad privada
-	constructor(private jugadorService: JugadorService){
-		console.log("Constructor");
+	// Con declare le digo a angular que tenga en cuenta que
+	// var jQuery y var $ se refieren al ámbito global
+	//declare var jQuery:any;
+	//declare var $:any;
+	
+	constructor(){
+		// Este método se ejecuta automáticamente cuando un
+		// componente se instancia en la página. 
+		console.log("Hola, amigos, acabo de nacer");
 	}
 	
 	ngOnInit():void{
-		console.log("Componente inicializado");
-		this.getJugadores();
+		// Este método se ejecuta después de constructor(),
+		// cuando todas las clases del componente han terminado
+		// de inicializarse
+		console.log("Hola, amigos, he terminado de iniciarme");
+		//window['$'](".jugadores").css("transform", "rotate(20deg)");
 	}
-	
-	getJugadores():void{
-		// Esto es para la versión síncrona...
-		//this.jugadores = this.jugadorService.getJugadores();
-		
-		// Esto es para la versión asíncrona
-		//this.jugadorService.getJugadores().then( jugadores => this.jugadores = jugadores );
-		
-		// Y esto es para la versión vieja de la versión 
-		// asíncrona
-		var th:any = this;
-		this.jugadorService.getJugadores().then(function(yuyu){
-				th.jugadores = yuyu;
-			} 
-		);
-	}	
 		
 	onSelect(player: Jugador): void{
 		this.selPlayer = player;
@@ -61,7 +52,7 @@ export class AppComponent implements OnInit {
 		
 		for(var indice in this.jugadores){
 			if(this.jugadores[indice].id == player.id){
-				this.jugadores.splice(parseInt(indice),1);
+				this.jugadores.splice(indice,1);
 				this.selPlayer = null;
 			}
 		}

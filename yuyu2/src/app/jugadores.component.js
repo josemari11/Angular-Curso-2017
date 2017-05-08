@@ -10,48 +10,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importamos la clase Component del paquete angular/core
 var core_1 = require("@angular/core");
-var jugador_1 = require("./jugador");
+var jugador_service_1 = require("./jugador.service");
 var boca_1 = require("./boca");
-var Jugador_service_1 = require("./Jugador.service");
-//Decorador Ajusta varias propiedades de nuestro componente
-var AppComponent = (function () {
-    //Con declare le digo a angular que tenga en cuenta que 
-    //var jQuery y var $ se refieren  al ámbito global
-    //declare var jQuery:any;
-    //declare var $:any;
-    function AppComponent() {
+var JugadoresComponent = (function () {
+    //jugadorService: JugadorService;
+    // INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
+    // clase. Se lo pasamos como propiedad privada
+    function JugadoresComponent(jugadorService) {
+        this.jugadorService = jugadorService;
         this.title = "Ranking de jugadores...";
-        this.jugadores = jugador_1.Jugador[]; // Un array de objetos jugador
         this.altavoz = new boca_1.Boca();
-        // Este método se ejecuta automáticamente cuando un
-        // componente se instancia en la página. 
-        console.log("Hola, amigos, acabo de nacer");
+        console.log("Constructor");
     }
-    AppComponent.prototype.ngOnInit = function () {
-        // Este método se ejecuta después de constructor(),
-        // cuando todas las clases del componente han terminado
-        // de inicializarse
-        console.log("Hola, amigos, he terminado de iniciarme");
-        //Uso de Jquery
-        //window['$'](".jugadores").css("transform","rotate(10deg)");
+    JugadoresComponent.prototype.ngOnInit = function () {
+        console.log("Componente inicializado");
+        this.getJugadores();
     };
-    AppComponent.prototype.onSelect = function (player) {
+    JugadoresComponent.prototype.getJugadores = function () {
+        // Esto es para la versión síncrona...
+        //this.jugadores = this.jugadorService.getJugadores();
+        // Esto es para la versión asíncrona
+        //this.jugadorService.getJugadores().then( jugadores => this.jugadores = jugadores );
+        // Y esto es para la versión vieja de la versión 
+        // asíncrona
+        var th = this;
+        this.jugadorService.getJugadores().then(function (yuyu) {
+            th.jugadores = yuyu;
+        });
+    };
+    JugadoresComponent.prototype.onSelect = function (player) {
         this.selPlayer = player;
         this.altavoz.habla(player.presentacion);
     };
-    AppComponent.prototype.onDelete = function (player) {
+    JugadoresComponent.prototype.onDelete = function (player) {
         var x = confirm("¿Estás seguro de que deseas eliminar a este usuario?\nMira que aquí no valen los CTRL + Z");
         if (x == false)
             return;
         for (var indice in this.jugadores) {
             if (this.jugadores[indice].id == player.id) {
-                //comentar para errores
-                this.jugadores.splice(indice, 1);
+                this.jugadores.splice(parseInt(indice), 1);
                 this.selPlayer = null;
             }
         }
     };
-    AppComponent.prototype.newPlayer = function () {
+    JugadoresComponent.prototype.newPlayer = function () {
         // Voy a crear un nuevo id al azar. ÑAPACODE WARNING!!
         var idj = Number(Math.random() * 1000000000);
         // creo un objeto temporal con las props del nuevo jugador
@@ -69,15 +71,15 @@ var AppComponent = (function () {
         // objeto que acabo de crear
         this.onSelect(obj);
     };
-    AppComponent.prototype.log = function () {
+    JugadoresComponent.prototype.log = function () {
         console.log(this.jugadores);
     };
-    AppComponent.prototype.guardar = function () {
+    JugadoresComponent.prototype.guardar = function () {
         console.log("guardando...");
         var cadena = JSON.stringify(this.jugadores);
         localStorage.setItem("jugadores", cadena);
     };
-    AppComponent.prototype.cargar = function () {
+    JugadoresComponent.prototype.cargar = function () {
         console.log("cargando...");
         var cadena = localStorage.getItem("jugadores");
         // Hemos recuperado los datos, pero están como una cadena
@@ -86,19 +88,18 @@ var AppComponent = (function () {
         this.jugadores = JSON.parse(cadena);
         this.selPlayer = null;
     };
-    return AppComponent;
+    return JugadoresComponent;
 }());
-AppComponent = __decorate([
+JugadoresComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        //solo puede colgar de una plantilla html
+        selector: 'my-jugadores',
         templateUrl: './html/app.component.html',
-        //puede tener varias hojas de estilos
         styleUrls: ['./css/app.component.css'],
-        // ESto hay que ponerlo cuando tiemos de servicios para obtener los datos
-        providers: [Jugador_service_1.JugadorService],
+        // Esto hay que ponerlo cuando tiramos de servicios para 
+        // obtener los datos
+        providers: [jugador_service_1.JugadorService],
     }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.componentB.js.map
+    __metadata("design:paramtypes", [jugador_service_1.JugadorService])
+], JugadoresComponent);
+exports.JugadoresComponent = JugadoresComponent;
+//# sourceMappingURL=jugadores.component.js.map

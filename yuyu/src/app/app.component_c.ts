@@ -1,48 +1,43 @@
 // Importamos la clase Component del paquete angular/core
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Jugador } from './jugador';
+import { JugadorService } from './jugador.service';
 import { Boca } from './boca';
-import { JugadorService} from './Jugador.service';
 
 
-//Decorador Ajusta varias propiedades de nuestro componente
 @Component({
   selector: 'my-app',
-    //solo puede colgar de una plantilla html
   templateUrl: './html/app.component.html',
-    //puede tener varias hojas de estilos
   styleUrls: ['./css/app.component.css'],
-  // ESto hay que ponerlo cuando tiemos de servicios para obtener los datos
-    providers: [JugadorService],
+  // Esto hay que ponerlo cuando tiramos de servicios para 
+  // obtener los datos
+  providers: [JugadorService],	
 })
 
 
 export class AppComponent implements OnInit { 
 	title = "Ranking de jugadores...";
-	jugadores: Jugador[]; // Un array de objetos jugador
-	selPlayer: Jugador; // el jugador seleccionado de la lista
+	jugadores: Jugador[]; 	// un array de objetos Jugador
+	selPlayer: Jugador;		// el jugador seleccionado de la lista
 	altavoz: Boca = new Boca();
-    // INYECTAR EL SERVIVIO: Esto se hace en el constructor de la clase.
-    // Se lo pasamoscomo propiedad privada
-    constructor(private jugadorService:JugadorService){
-        console.log("Constructor");
-    }
 	
+	
+	// INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
+	// clase. Se lo pasamos como propiedad privada
+	constructor(private jugadorService: JugadorService){
+		console.log("Constructor");
+	}
 	
 	ngOnInit():void{
-		// Este método se ejecuta después de constructor(),
-		// cuando todas las clases del componente han terminado
-		// de inicializarse
-		console.log("APP inicializada");
-        this.getJugadores();
-        
-        //Uso de Jquery
-        //window['$'](".jugadores").css("transform","rotate(10deg)");
+		console.log("Componente inicializado");
+		this.getJugadores();
 	}
+	
+	getJugadores():void{
+		this.jugadores = this.jugadorService.getJugadores();
+	}	
 		
-    getJugadores(): void{
-        this.jugadores = this.jugadorService.getJugadores();
-    }
 	onSelect(player: Jugador): void{
 		this.selPlayer = player;
 		this.altavoz.habla(player.presentacion);
@@ -54,7 +49,6 @@ export class AppComponent implements OnInit {
 		
 		for(var indice in this.jugadores){
 			if(this.jugadores[indice].id == player.id){
-                //comentar para errores
 				this.jugadores.splice(indice,1);
 				this.selPlayer = null;
 			}
