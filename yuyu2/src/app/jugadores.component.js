@@ -93,10 +93,8 @@ var JugadoresComponent = (function () {
 JugadoresComponent = __decorate([
     core_1.Component({
         selector: 'my-jugadores',
-        templateUrl: './html/app.component.html',
-        styleUrls: ['./css/app.component.css'],
-        // Esto hay que ponerlo cuando tiramos de servicios para 
-        // obtener los datos
+        templateUrl: './html/jugadores.component.html',
+        styleUrls: ['./css/jugadores.component.css'],
         providers: [jugador_service_1.JugadorService],
     }),
     __metadata("design:paramtypes", [jugador_service_1.JugadorService])

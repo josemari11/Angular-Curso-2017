@@ -20,7 +20,18 @@ export class JugadorService{
 	getJugadores(): Promise<Jugador[]>{
 		return Promise.resolve(JUGADORES);
 	}
+	
+	getJugador(id: number): Promise<Jugador> {
+		return this.getJugadores().then(
+			jugadores => jugadores.find( jugador => jugador.id == id );
+		)
+	}
 }
+
+
+
+
+
 
 
 

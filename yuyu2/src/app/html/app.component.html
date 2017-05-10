@@ -1,21 +1,8 @@
-	<h1>{{title}}</h1>
-	<hr>
-	<ul class="jugadores">
-		<li *ngFor="let player of jugadores" (click)="onSelect(player)" >
-			<span class="badge">{{player.id}}</span> {{player.name}}
-			<button class="btnBorrar" type="button" (click)="onDelete(player)">Borrar</button>
-		</li>
-	</ul>
-	<button type="button" (click)="newPlayer()">Nuevo</button>
-	<button type="button" (click)="log()">Log...</button>
-	 | 
-	<button type="button" (click)="guardar()">Guardar datos</button>
-	<button type="button" (click)="cargar()">Cargar datos</button>
-	<hr>
-	
-	<jugador-detalle [jugador]="selPlayer"></jugador-detalle>
-	
-	
-	
-	
-	
+<h1>{{title}}</h1>
+<a routerLink="/dashboard" class="boton-menu">Podio</a>
+<a routerLink="/jugadores" class="boton-menu">Lista</a>
+<hr>
+<router-outlet></router-outlet>
+<footer>
+© 2017 Ceinpro.es
+</footer>

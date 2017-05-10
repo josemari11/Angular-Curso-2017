@@ -14,17 +14,13 @@ import { Boca } from './boca';
 })
 
 
-// DECLARACIÓN DE LA CLASE
+// DECLARACIÃ“N DE LA CLASE
 export class DashboardComponent implements OnInit { 
 	jugadores:Jugador[] = [];
 	
-	// Recuerda: el constructor se ejecuta en cuanto se instancia
-	// la clase
 	constructor(private jugadorService: JugadorService){
 	}
 	
-	// ngOnInit se ejecuta cuando la clase se ha terminado de
-	// inicializar
 	ngOnInit():void{
 		this.jugadorService.getJugadores()
 		.then(

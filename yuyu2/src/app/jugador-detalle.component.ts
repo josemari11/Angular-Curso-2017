@@ -1,5 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 import { Jugador } from './jugador';
+import { JugadorService } from './jugador.service';
+import 'rxjs/add/operator/switchMap'; // EXPLICAR MÁS ADELANTE!!
 
 @Component({
 	selector: 'jugador-detalle',
@@ -7,23 +11,28 @@ import { Jugador } from './jugador';
 	styleUrls: ['./css/jugador-detalle.component.css']
 })
 
-export class JugadorDetalleComponent {
-	// Le decimos a angular que jugador es una propiedad de tipo
-	// Jugador, y que se gestiona como un input
+export class JugadorDetalleComponent implements OnInit {
 	@Input() jugador: Jugador;
 	
+	constructor(private jugadorService:JugadorService, private route: ActivatedRoute, private location: Location){}
+	
+	ngOnInit():void{
+		this.route.params.switchMap( (params:Params) => this.jugadorService.getJugador(+params['id']))
+		.subscribe(jugador => this.jugador = jugador);
+	}
+	
+	patras():void {
+		this.location.back();
+	}
+	
 	guardar(): void{
-		// Tendremos que hacer una validación de los campos 
-		// del formulario antes de actualizar el modelo de datos
 		var errores = "";
 		
-		// Referencias a elementos de la página
 		var nombre = document.getElementById("ctrlNombre");
 		var puntos = document.getElementById("ctrlPuntos");
 		var estado = document.getElementById("ctrlEstado");
 		var presentacion = document.getElementById("ctrlPresentacion");
 		
-		// Empezamos con las validaciones
 		if(nombre['value'] == ""){
 			errores = errores + "El nombre es obligatorio\n";
 		}
@@ -34,9 +43,6 @@ export class JugadorDetalleComponent {
 			errores = errores + "No presrentarse es de mala educación\n";
 		}
 		
-		// Llegados a este punto, si errores sigue vacío, es porque
-		// no hemos tenido errores de validación. Si no, es que 
-		// ha habido algún error
 		if(errores != ""){
 			alert(errores);
 		}

@@ -3,47 +3,22 @@
 	display: inline-block;
 	padding: 10px;
 	border: 1px solid #036;
+    margin-left: 40px;
 }
 
-/* Estos estilos habrá que moverlos a otra parte */
-.selected{}
-.jugadores{
-	list-style-type:none;
-	padding:10px;
+a{
+	flex-grow: 1;
+	border: 1px solid #666;
+	background-color: olivedrab;
+	padding: 12px;
+    color: antiquewhite;
+    font-size: 2em;
+    
+    
 }
-.jugadores li{
-	background-color: #EEE;
-	height: 40px; 
-	line-height: 40px;
-	border-bottom: 1px solid #DDD;
+a:hover{
+    background-color: aliceblue;
+    color: black;
+    text-decoration: none;
+    
 }
-.jugadores li.selected:hover{
-	background-color: #FC0;
-}
-.jugadores li:hover{
-	background-color: #FC0;
-}
-.jugadores .text{}
-.jugadores .badge{
-	border-radius:0;
-	width:40px; height: 40px;
-	line-height: 40px;
-	border-bottom: 1px solid #CCC;
-	padding:0;
-	background-color: #666;
-}
-.btnBorrar{
-	height: 32px;
-	padding:0 6px; line-height: 32px;
-	float: right;
-	margin:3px 8px 0 0;
-	border:1px solid #003366;
-	background-color: #EEE;
-	border-radius: 4px;
-}
-
-
-
-
-
-

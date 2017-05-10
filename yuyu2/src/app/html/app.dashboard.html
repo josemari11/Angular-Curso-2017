@@ -1,8 +1,4 @@
 <h3>Podio de jugadores</h3>
 <div class="podio">
-	<div *ngFor="let jugador of jugadores" class="cosas">
-		<div class="recuadro-jugador">
-			<h4>{{jugador.name}}</h4>
-		</div>
-	</div>
+	<a class="cosas" *ngFor="let jugador of jugadores" [routerLink]="['/detalle', jugador.id]" >{{jugador.name}}</a>
 </div>

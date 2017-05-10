@@ -8,10 +8,8 @@ import { Boca } from './boca';
 
 @Component({
   selector: 'my-jugadores',
-  templateUrl: './html/app.component.html',
-  styleUrls: ['./css/app.component.css'],
-  // Esto hay que ponerlo cuando tiramos de servicios para 
-  // obtener los datos
+  templateUrl: './html/jugadores.component.html',
+  styleUrls: ['./css/jugadores.component.css'],
   providers: [JugadorService],	
 })
 

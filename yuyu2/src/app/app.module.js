@@ -6,9 +6,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
+var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var jugadores_component_1 = require("./jugadores.component");
 var dashboard_component_1 = require("./dashboard.component");
@@ -24,11 +24,7 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
-            router_1.RouterModule.forRoot([
-                { path: 'jugadores', component: jugadores_component_1.JugadoresComponent },
-                { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
-                { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-            ])
+            app_routing_module_1.AppRoutingModule,
         ],
         declarations: [app_component_1.AppComponent, jugador_detalle_component_1.JugadorDetalleComponent, jugadores_component_1.JugadoresComponent, dashboard_component_1.DashboardComponent],
         bootstrap: [app_component_1.AppComponent],

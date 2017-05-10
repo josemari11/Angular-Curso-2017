@@ -3,6 +3,8 @@ import { RouterModule }  from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }	 from '@angular/forms';
 
+import { AppRoutingModule }	 from './app-routing.module';
+
 import { AppComponent }  from './app.component';
 import { JugadoresComponent }  from './jugadores.component';
 import { DashboardComponent }  from './dashboard.component';
@@ -12,13 +14,8 @@ import { JugadorDetalleComponent }  from './jugador-detalle.component';
 @NgModule({
   imports:      [ 
 	BrowserModule, 
-	FormsModule, 
-	RouterModule.forRoot([
-		{path: 'jugadores', component: JugadoresComponent},
-		{path: 'dashboard', component: DashboardComponent},
-		{path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-	])
-  
+	FormsModule,
+	AppRoutingModule,
   ],
   declarations: [ AppComponent, JugadorDetalleComponent, JugadoresComponent, DashboardComponent ],
   bootstrap:    [ AppComponent ],

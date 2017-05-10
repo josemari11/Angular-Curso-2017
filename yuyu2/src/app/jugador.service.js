@@ -24,6 +24,9 @@ var JugadorService = (function () {
     JugadorService.prototype.getJugadores = function () {
         return Promise.resolve(mock_jugadores_1.JUGADORES);
     };
+    JugadorService.prototype.getJugador = function (id) {
+        return this.getJugadores().then(function (jugadores) { return jugadores.find(function (jugador) { return jugador.id == id; }); });
+    };
     return JugadorService;
 }());
 JugadorService = __decorate([

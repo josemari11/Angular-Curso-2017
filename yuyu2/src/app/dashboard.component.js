@@ -13,14 +13,10 @@ var core_1 = require("@angular/core");
 var jugador_service_1 = require("./jugador.service");
 // DECORATOR DEL COMPONENTE
 var DashboardComponent = (function () {
-    // Recuerda: el constructor se ejecuta en cuanto se instancia
-    // la clase
     function DashboardComponent(jugadorService) {
         this.jugadorService = jugadorService;
         this.jugadores = [];
     }
-    // ngOnInit se ejecuta cuando la clase se ha terminado de
-    // inicializar
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.jugadorService.getJugadores()
