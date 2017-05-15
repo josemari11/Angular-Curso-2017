@@ -5,20 +5,9 @@
 	border: 1px solid #999;
 	display: flex;
 }
-a{
+.recuadro-jugador{
 	flex-grow: 1;
 	border: 1px solid #666;
-	background-color: olivedrab;
+	background-color: yellow;
 	padding: 12px;
-    color: antiquewhite;
-    font-size: 2em;
-    text-align: center;
-    
 }
-a:hover{
-    background-color: aliceblue;
-    color: black;
-    text-decoration: none;
-    
-}
-

@@ -12,12 +12,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var jugador_service_1 = require("./jugador.service");
 var boca_1 = require("./boca");
+var router_1 = require("@angular/router");
 var JugadoresComponent = (function () {
     //jugadorService: JugadorService;
     // INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
     // clase. Se lo pasamos como propiedad privada
-    function JugadoresComponent(jugadorService) {
+    function JugadoresComponent(jugadorService, router) {
         this.jugadorService = jugadorService;
+        this.router = router;
         this.title = "Ranking de jugadores...";
         this.altavoz = new boca_1.Boca();
         console.log("Constructor");
@@ -25,6 +27,9 @@ var JugadoresComponent = (function () {
     JugadoresComponent.prototype.ngOnInit = function () {
         console.log("Componente inicializado");
         this.getJugadores();
+    };
+    JugadoresComponent.prototype.gotoDetalle = function () {
+        this.router.navigate(['/detalle', this.selectedJugador.id]);
     };
     JugadoresComponent.prototype.getJugadores = function () {
         // Esto es para la versión síncrona...
@@ -39,7 +44,7 @@ var JugadoresComponent = (function () {
         });
     };
     JugadoresComponent.prototype.onSelect = function (player) {
-        this.selPlayer = player;
+        this.selectedJugador = player;
         this.altavoz.habla(player.presentacion);
     };
     JugadoresComponent.prototype.onDelete = function (player) {
@@ -49,7 +54,7 @@ var JugadoresComponent = (function () {
         for (var indice in this.jugadores) {
             if (this.jugadores[indice].id == player.id) {
                 this.jugadores.splice(parseInt(indice), 1);
-                this.selPlayer = null;
+                this.selectedJugador = null;
             }
         }
     };
@@ -86,7 +91,7 @@ var JugadoresComponent = (function () {
         // de texto, y tenemos que convertirlos a la estructura
         // original. Para eso usaremos el objeto JSON
         this.jugadores = JSON.parse(cadena);
-        this.selPlayer = null;
+        this.selectedJugador = null;
     };
     return JugadoresComponent;
 }());
@@ -97,7 +102,7 @@ JugadoresComponent = __decorate([
         styleUrls: ['./css/jugadores.component.css'],
         providers: [jugador_service_1.JugadorService],
     }),
-    __metadata("design:paramtypes", [jugador_service_1.JugadorService])
+    __metadata("design:paramtypes", [jugador_service_1.JugadorService, router_1.Router])
 ], JugadoresComponent);
 exports.JugadoresComponent = JugadoresComponent;
 //# sourceMappingURL=jugadores.component.js.map

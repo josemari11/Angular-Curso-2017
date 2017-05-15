@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { Jugador } from './jugador';
 import { JugadorService } from './jugador.service';
 import { Boca } from './boca';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,12 +19,13 @@ export class JugadoresComponent implements OnInit {
 	title = "Ranking de jugadores...";
 	jugadores: Jugador[]; 	// un array de objetos Jugador
 	selPlayer: Jugador;		// el jugador seleccionado de la lista
+    selectedJugador: Jugador;
 	altavoz: Boca = new Boca();
 	//jugadorService: JugadorService;
 	
 	// INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
 	// clase. Se lo pasamos como propiedad privada
-	constructor(private jugadorService: JugadorService){
+	constructor(private jugadorService: JugadorService, private router:Router){
 		console.log("Constructor");
 	}
 	
@@ -31,6 +33,10 @@ export class JugadoresComponent implements OnInit {
 		console.log("Componente inicializado");
 		this.getJugadores();
 	}
+    
+    gotoDetalle():void{
+        this.router.navigate(['/detalle',this.selectedJugador.id]);
+    }
 	
 	getJugadores():void{
 		// Esto es para la versión síncrona...
@@ -42,14 +48,14 @@ export class JugadoresComponent implements OnInit {
 		// Y esto es para la versión vieja de la versión 
 		// asíncrona
 		var th:any = this;
-		this.jugadorService.getJugadores().then(  		    function(yuyu){
+		this.jugadorService.getJugadores().then(function(yuyu){
 				th.jugadores = yuyu;
 			} 
 		);
 	}	
 		
 	onSelect(player: Jugador): void{
-		this.selPlayer = player;
+		this.selectedJugador = player;
 		this.altavoz.habla(player.presentacion);
 	}
 	
@@ -60,7 +66,7 @@ export class JugadoresComponent implements OnInit {
 		for(var indice in this.jugadores){
 			if(this.jugadores[indice].id == player.id){
 				this.jugadores.splice(parseInt(indice),1);
-				this.selPlayer = null;
+				this.selectedJugador = null;
 			}
 		}
 	}
@@ -102,7 +108,7 @@ export class JugadoresComponent implements OnInit {
 		// de texto, y tenemos que convertirlos a la estructura
 		// original. Para eso usaremos el objeto JSON
 		this.jugadores = JSON.parse(cadena);
-		this.selPlayer = null;
+		this.selectedJugador = null;
 	}
 }
 
