@@ -10,11 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Importamos la clase Component del paquete angular/core
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var jugador_service_1 = require("./jugador.service");
 var boca_1 = require("./boca");
-var router_1 = require("@angular/router");
 var JugadoresComponent = (function () {
-    //jugadorService: JugadorService;
     // INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
     // clase. Se lo pasamos como propiedad privada
     function JugadoresComponent(jugadorService, router) {
@@ -57,6 +56,28 @@ var JugadoresComponent = (function () {
                 this.selectedJugador = null;
             }
         }
+    };
+    JugadoresComponent.prototype.borrar = function (jugador) {
+        var _this = this;
+        this.jugadorService.delete(jugadores.id)
+            .then(function () {
+            _this.jugadores = _this.jugadores.filter(function (x) { return  !== jugador; });
+            if (_this.selectedJugador == jugador) {
+                _this.selectedJugador = null;
+            }
+        });
+    };
+    JugadoresComponent.prototype.crear = function (nombre) {
+        var _this = this;
+        nombre = nombre.trim();
+        if (nombre === "") {
+            return;
+        }
+        this.jugadorService.crear(nombre)
+            .then(function (jugador) {
+            _this.jugadores.push(jugador);
+            _this.selectedJugador = null;
+        });
     };
     JugadoresComponent.prototype.newPlayer = function () {
         // Voy a crear un nuevo id al azar. ÑAPACODE WARNING!!

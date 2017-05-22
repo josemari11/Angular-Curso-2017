@@ -1,0 +1,20 @@
+<ul class="jugadores">
+    <li *ngFor="let noticia of noticias" (click)="onSelected(noticia)">
+        <span class="bagde">{{noticia.id}}</span>{{noticia.titulo}}
+        <button class="onDelete(noticia)">Borrar</button>
+    </li>
+    
+</ul>
+
+
+<div>
+    <label >Noticia
+    <input #noticia/>
+    </label>
+    <button (click)="crear(noticiTitulo.value); noticiaTitulo.value=''"> Crear noticia</button>
+    <hr>
+    <div *ngIf="selectedNoticia">
+        <h2>Noticia seleccionada: {{selectedNoticia.titulo | uppercase }}</h2>
+        <button type="button" (click)="gotoDetalle()">Ver detalles</button>
+    </div>
+</div>

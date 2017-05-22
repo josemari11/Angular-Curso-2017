@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule }      from '@angular/core';
 import { RouterModule }  from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }	 from '@angular/forms';
 
 import { HttpModule }    from '@angular/http';
-import { InMemoryWebApiModule }    from 'angular-in-memory-web-api';
-import { InMemoryDataService }    from './in-memory-data.service';
-
+// Estos dos imports son para cargar y configurar la api in-memory
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppRoutingModule }	 from './app-routing.module';
 
@@ -20,8 +20,8 @@ import { JugadorDetalleComponent }  from './jugador-detalle.component';
   imports:      [ 
 	BrowserModule, 
 	FormsModule,
-    HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+	HttpModule,
+	InMemoryWebApiModule.forRoot(InMemoryDataService),
 	AppRoutingModule,
   ],
   declarations: [ AppComponent, JugadorDetalleComponent, JugadoresComponent, DashboardComponent ],

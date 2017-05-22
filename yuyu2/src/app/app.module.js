@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+// Estos dos imports son para cargar y configurar la api in-memory
 var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
 var in_memory_data_service_1 = require("./in-memory-data.service");
 var app_routing_module_1 = require("./app-routing.module");

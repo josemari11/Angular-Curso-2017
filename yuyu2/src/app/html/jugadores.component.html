@@ -4,17 +4,34 @@
 		<button class="btnBorrar" type="button" (click)="onDelete(player)">Borrar</button>
 	</li>
 </ul>
-<button type="button" (click)="newPlayer()">Nuevo</button>
-<button type="button" (click)="log()">Log...</button>
- |
-<button type="button" (click)="guardar()">Guardar datos</button>
-<button type="button" (click)="cargar()">Cargar datos</button>
+
 <hr>
-	
+<div>
+    <label>Nombre del jugador:
+    <input  #jugadorNombre />
+    </label>
+    <button (click)="crear(jugadorNombre.value); jugadorNombre.value=''">Crear jugador</button>
+    
+</div>
+
+<hr>
+
 <div *ngIf="selectedJugador">
-    <h2>Jugador seleccionado:{{selectedJugador.name | uppercase}}</h2>
-    <button type="button" (click)="gotoDetalle()">Ver Detalle</button>
-</div>	
+<h2>Jugador seleccionado: {{selectedJugador.name | uppercase }}</h2>
+	<button type="button" (click)="gotoDetalle()">Ver detalles</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+	
+	
 	
 	
 	

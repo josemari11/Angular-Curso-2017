@@ -9,35 +9,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
 var jugador_1 = require("./jugador");
+var jugador_service_1 = require("./jugador.service");
+require("rxjs/add/operator/switchMap"); // EXPLICAR MÁS ADELANTE!!
 var JugadorDetalleComponent = (function () {
-    function JugadorDetalleComponent() {
+    function JugadorDetalleComponent(jugadorService, route, location) {
+        this.jugadorService = jugadorService;
+        this.route = route;
+        this.location = location;
     }
+    JugadorDetalleComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.switchMap(function (params) { return _this.jugadorService.getJugador(+params['id']); })
+            .subscribe(function (jugador) { return _this.jugador = jugador; });
+    };
+    JugadorDetalleComponent.prototype.patras = function () {
+        this.location.back();
+    };
     JugadorDetalleComponent.prototype.guardar = function () {
-        // Tendremos que hacer una validación de los campos 
-        // del formulario antes de actualizar el modelo de datos
-        var errores = "";
-        // Referencias a elementos de la página
+        var _this = this;
+        this.jugadorService.update(this.jugador)
+            .then(function () { return _this.patras(); });
+        //////////////////////////////////////////////////////
+        /*var errores = "";
+        
         var nombre = document.getElementById("ctrlNombre");
         var puntos = document.getElementById("ctrlPuntos");
         var estado = document.getElementById("ctrlEstado");
         var presentacion = document.getElementById("ctrlPresentacion");
-        // Empezamos con las validaciones
-        if (nombre['value'] == "") {
+        
+        if(nombre['value'] == ""){
             errores = errores + "El nombre es obligatorio\n";
         }
-        if (puntos['value'] == "") {
+        if(puntos['value'] == ""){
             errores = errores + "Debes introducir los puntos\n";
         }
-        if (presentacion['value'] == "") {
+        if(presentacion['value'] == ""){
             errores = errores + "No presrentarse es de mala educación\n";
         }
-        // Llegados a este punto, si errores sigue vacío, es porque
-        // no hemos tenido errores de validación. Si no, es que 
-        // ha habido algún error
-        if (errores != "") {
+        
+        if(errores != ""){
             alert(errores);
-        }
+        }*/
     };
     return JugadorDetalleComponent;
 }());
@@ -50,7 +65,8 @@ JugadorDetalleComponent = __decorate([
         selector: 'jugador-detalle',
         templateUrl: './html/jugador-detalle.component.html',
         styleUrls: ['./css/jugador-detalle.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [jugador_service_1.JugadorService, router_1.ActivatedRoute, common_1.Location])
 ], JugadorDetalleComponent);
 exports.JugadorDetalleComponent = JugadorDetalleComponent;
 //# sourceMappingURL=jugador-detalle.component.js.map

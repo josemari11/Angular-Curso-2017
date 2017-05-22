@@ -29,23 +29,30 @@ var JugadorDetalleComponent = (function () {
         this.location.back();
     };
     JugadorDetalleComponent.prototype.guardar = function () {
-        var errores = "";
+        var _this = this;
+        this.jugadorService.update(this.jugador)
+            .then(function () { return _this.patras; });
+        //////////////////////////////////////////////////
+        /*var errores = "";
+        
         var nombre = document.getElementById("ctrlNombre");
         var puntos = document.getElementById("ctrlPuntos");
         var estado = document.getElementById("ctrlEstado");
         var presentacion = document.getElementById("ctrlPresentacion");
-        if (nombre['value'] == "") {
+        
+        if(nombre['value'] == ""){
             errores = errores + "El nombre es obligatorio\n";
         }
-        if (puntos['value'] == "") {
+        if(puntos['value'] == ""){
             errores = errores + "Debes introducir los puntos\n";
         }
-        if (presentacion['value'] == "") {
+        if(presentacion['value'] == ""){
             errores = errores + "No presrentarse es de mala educación\n";
         }
-        if (errores != "") {
+        
+        if(errores != ""){
             alert(errores);
-        }
+        }*/
     };
     return JugadorDetalleComponent;
 }());

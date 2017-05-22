@@ -1,0 +1,37 @@
+<ul class="jugadores">
+	<li *ngFor="let player of jugadores" (click)="onSelect(player)" >
+		<span class="badge">{{player.id}}</span> {{player.name}}
+		<button class="btnBorrar" type="button" (click)="borrar(player)">Borrar</button>
+	</li>
+</ul>
+<hr>
+
+<div>
+	<label>
+		Nombre del jugador: 
+		<input #jugadorNombre />
+	</label>
+	<button (click)="crear(jugadorNombre.value); jugadorNombre.value=''">Crear jugador</button>
+</div>
+
+<hr>
+
+<div *ngIf="selectedJugador">
+<h2>Jugador seleccionado: {{selectedJugador.name | uppercase }}</h2>
+	<button type="button" (click)="gotoDetalle()">Ver detalles</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	

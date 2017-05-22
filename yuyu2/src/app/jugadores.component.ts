@@ -1,10 +1,11 @@
 // Importamos la clase Component del paquete angular/core
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { RouterModule, Routes }  from '@angular/router';
 import { Jugador } from './jugador';
+import { Router } from '@angular/router';
 import { JugadorService } from './jugador.service';
 import { Boca } from './boca';
-import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,10 +19,9 @@ import {Router} from '@angular/router';
 export class JugadoresComponent implements OnInit { 
 	title = "Ranking de jugadores...";
 	jugadores: Jugador[]; 	// un array de objetos Jugador
-	selPlayer: Jugador;		// el jugador seleccionado de la lista
-    selectedJugador: Jugador;
+	selectedJugador: Jugador;	// jugador seleccionado
 	altavoz: Boca = new Boca();
-	//jugadorService: JugadorService;
+	
 	
 	// INYECTAR EL SERVICIO: Esto se hace en el CONSTRUCTOR de la 
 	// clase. Se lo pasamos como propiedad privada
@@ -33,10 +33,10 @@ export class JugadoresComponent implements OnInit {
 		console.log("Componente inicializado");
 		this.getJugadores();
 	}
-    
-    gotoDetalle():void{
-        this.router.navigate(['/detalle',this.selectedJugador.id]);
-    }
+	
+	gotoDetalle():void{
+		this.router.navigate(['/detalle', this.selectedJugador.id]);
+	}
 	
 	getJugadores():void{
 		// Esto es para la versión síncrona...
@@ -48,7 +48,7 @@ export class JugadoresComponent implements OnInit {
 		// Y esto es para la versión vieja de la versión 
 		// asíncrona
 		var th:any = this;
-		this.jugadorService.getJugadores().then(function(yuyu){
+		this.jugadorService.getJugadores().then(  		    function(yuyu){
 				th.jugadores = yuyu;
 			} 
 		);
@@ -70,7 +70,29 @@ export class JugadoresComponent implements OnInit {
 			}
 		}
 	}
-	
+	borrar(jugador: Jugador):void{
+        this.jugadorService.borrar(jugadores.id)
+        .then (
+            () => {
+                    this.jugadores = this.jugadores.filter( x => !== jugador);
+                    if(this.selectedJugador == jugador){
+                        this.selectedJugador = null;
+                    }
+                  }
+        );
+    }
+    crear(nombre:string):void{
+        nombre = nombre.trim();
+        if(nombre === ""){ return; }
+        this.jugadorService.crear(nombre)
+            .then(
+                jugador => {
+                    this.jugadores.push(jugador);
+                    this.selectedJugador = null;
+                }
+        );
+    }
+
 	newPlayer(): void{
 		// Voy a crear un nuevo id al azar. ÑAPACODE WARNING!!
 		var idj:number = Number(Math.random() * 1000000000);

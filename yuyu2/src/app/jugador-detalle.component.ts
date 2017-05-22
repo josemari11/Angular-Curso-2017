@@ -26,7 +26,11 @@ export class JugadorDetalleComponent implements OnInit {
 	}
 	
 	guardar(): void{
-		var errores = "";
+        this.jugadorService.update(this.jugador)
+            .then( () => this.patras);
+        
+        //////////////////////////////////////////////////
+		/*var errores = "";
 		
 		var nombre = document.getElementById("ctrlNombre");
 		var puntos = document.getElementById("ctrlPuntos");
@@ -45,7 +49,7 @@ export class JugadorDetalleComponent implements OnInit {
 		
 		if(errores != ""){
 			alert(errores);
-		}
+		}*/
 	}
 }
 
