@@ -9,72 +9,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var jugador_1 = require("./jugador");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
-// Esto hay que ponerlo por narices. Le dice a angular que emita metadatos para el servicio, por si m�s tarde hay que a�adirle dependencias
-var JugadorService = (function () {
-    function JugadorService(http) {
+// Esto hay que ponerlo por narices. Le dice a angular que emita metadatos para el servicio, por si más tarde hay que añadirle dependencias
+var NoticiasService = (function () {
+    function NoticiasService(http) {
         this.http = http;
         // propiedades privadas
-        this.jugadoresUrl = 'api/jugadores'; // URL a la api web
+        //private noticiasUrl = 'api/noticias'; // URL a la api 
+        this.noticiasUrl = 'api/noticias'; // URL a la api 
         this.cabeceras = new http_1.Headers({
             'Content-Type': 'application/json'
         });
     }
-    JugadorService.prototype.getJugadores = function () {
-        return this.http.get(this.jugadoresUrl)
+    NoticiasService.prototype.getNoticias = function () {
+        return this.http.get(this.noticiasUrl)
             .toPromise()
             .then(function (datos) { return datos.json().data; })
             .catch(this.queHaPasado);
-        //Esto es la traducci�n al arrow de arriba
-        /*
-        $.ajax({
-            url:this.jugadoresUrl,
-            dataType:"json",
-            success: function(datos){
-                return datos;
-            },
-            error: funcion(queHaPasado){
-                console.log(queHaPasado);
-            }
-        })
-        */
     };
-    JugadorService.prototype.getJugador = function (id) {
-        //var url = this.jugadoresUrl + "/" +id;
-        var URL = "$(this.jugadoresUrl)/$(id)";
-        return this.http.get(URL)
+    NoticiasService.prototype.getNoticia = function (id) {
+        var url = this.noticiasUrl + "/" + id;
+        return this.http.get(url)
             .toPromise()
             .then(function (respuesta) { return respuesta.json().data; })
             .catch(this.queHaPasado);
-        /*return this.getJugadores()
-            .then(jugadores => jugadores.find( jugador => jugador.id == id ));*/
     };
-    JugadorService.prototype.queHaPasado = function (error) {
+    NoticiasService.prototype.queHaPasado = function (error) {
         console.log("Ha ocurrido el siguiente error: ", error);
         return Promise.reject(error.message || error);
     };
-    JugadorService.prototype.update = function (jugador) {
-        var URL = this.jugadoresUrl + "/" + jugador.id;
-        return this.http
-            .put(URL, JSON.stringify(jugador_1.Jugador), { headers: this.cabeceras })
+    NoticiasService.prototype.update = function (noticia) {
+        var URL = this.noticiasUrl + "/" + noticia.id;
+        return this.http.put(URL, JSON.stringify(noticia), { headers: this.cabeceras })
             .toPromise()
-            .then(function () { return jugador; })
+            .then(function () { return noticia; })
             .catch(this.queHaPasado);
     };
-    JugadorService.prototype.crear = function (nombre) {
-        return this.http
-            .post(this.jugadoresUrl, JSON.stringify(jugador), { headers: this.cabeceras })
+    NoticiasService.prototype.crear = function (nombre) {
+        return this.http.post(this.noticiasUrl, JSON.stringify({ name: nombre, estado: 3 }), { headers: this.cabeceras })
             .toPromise()
             .then(function (respuesta) { return respuesta.json().data; })
             .catch(this.queHaPasado);
     };
-    return JugadorService;
+    NoticiasService.prototype.delete = function (id) {
+        var URL = this.noticiasUrl + "/" + id;
+        return this.http.delete(URL, { headers: this.cabeceras })
+            .toPromise()
+            .then(function () { return null; })
+            .catch(this.queHaPasado);
+    };
+    return NoticiasService;
 }());
-JugadorService = __decorate([
+NoticiasService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], JugadorService);
-exports.JugadorService = JugadorService;
-//# sourceMappingURL=jugador.service.js.map
+], NoticiasService);
+exports.NoticiasService = NoticiasService;
+//# sourceMappingURL=noticias.service.js.map

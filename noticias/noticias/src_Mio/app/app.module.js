@@ -5,21 +5,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-// LOS IMPORTS
 var core_1 = require("@angular/core");
-// DECORATOR
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = "Gestión de noticias";
+var platform_browser_1 = require("@angular/platform-browser");
+var listado_component_1 = require("./listado.component");
+var ListadoModule = (function () {
+    function ListadoModule() {
     }
-    return AppComponent;
+    return ListadoModule;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        templateUrl: './html/app.component.html',
-        styleUrls: ['./css/app.component.css'],
+ListadoModule = __decorate([
+    core_1.NgModule({
+        imports: [platform_browser_1.BrowserModule],
+        declarations: [listado_component_1.ListadoComponent],
+        bootstrap: [listado_component_1.ListadoComponent]
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], ListadoModule);
+exports.ListadoModule = ListadoModule;
+//# sourceMappingURL=app.module.js.map

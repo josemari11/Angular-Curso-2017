@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Noticia } from './noticia';
 import { NoticiaService } from './noticia.service';
-import 'rxjs/add/operator/switchMap'; // EXPLICAR MÁS ADELANTE!!
+import 'rxjs/add/operator/switchMap';
 
 @Component({
 	selector: 'noticia-detalle',
@@ -14,10 +14,10 @@ import 'rxjs/add/operator/switchMap'; // EXPLICAR MÁS ADELANTE!!
 export class NoticiaDetalleComponent implements OnInit {
 	@Input() noticia: Noticia;
 	
-	constructor(private jugadorService:JugadorService, private route: ActivatedRoute, private location: Location){}
+	constructor(private noticiaService:NoticiaService, private route: ActivatedRoute, private location: Location){}
 	
 	ngOnInit():void{
-		this.route.params.switchMap( (params:Params) => this.noticiaService.getNoticia(+params['id']))
+		this.route.params.switchMap( (params:Params) => this.noticiaService.getNoticias(+params['id']))
 		.subscribe(noticia => this.noticia = noticia);
 	}
 	

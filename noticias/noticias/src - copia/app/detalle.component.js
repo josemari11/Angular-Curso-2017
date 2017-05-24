@@ -12,39 +12,40 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var noticia_1 = require("./noticia");
-require("rxjs/add/operator/switchMap"); // EXPLICAR MÁS ADELANTE!!
-var NoticiaDetalleComponent = (function () {
-    function NoticiaDetalleComponent(jugadorService, route, location) {
-        this.jugadorService = jugadorService;
+var noticias_service_1 = require("./noticias.service");
+require("rxjs/add/operator/switchMap");
+var DetalleComponent = (function () {
+    function DetalleComponent(noticiasService, route, location) {
+        this.noticiasService = noticiasService;
         this.route = route;
         this.location = location;
     }
-    NoticiaDetalleComponent.prototype.ngOnInit = function () {
+    DetalleComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params.switchMap(function (params) { return _this.noticiaService.getNoticia(+params['id']); })
+        this.route.params.switchMap(function (params) { return _this.noticiasService.getNoticia(+params['id']); })
             .subscribe(function (noticia) { return _this.noticia = noticia; });
     };
-    NoticiaDetalleComponent.prototype.patras = function () {
+    DetalleComponent.prototype.patras = function () {
         this.location.back();
     };
-    NoticiaDetalleComponent.prototype.guardar = function () {
+    DetalleComponent.prototype.guardar = function () {
         var _this = this;
-        this.noticiaService.update(this.noticia)
-            .then(function () { return _this.patras; });
+        this.noticiasService.update(this.noticia)
+            .then(function () { return _this.patras(); });
     };
-    return NoticiaDetalleComponent;
+    return DetalleComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", noticia_1.Noticia)
-], NoticiaDetalleComponent.prototype, "noticia", void 0);
-NoticiaDetalleComponent = __decorate([
+], DetalleComponent.prototype, "noticia", void 0);
+DetalleComponent = __decorate([
     core_1.Component({
         selector: 'noticia-detalle',
-        templateUrl: '/html/detalle.component.html',
-        styleUrls: ['/css/detalle.component.css']
+        templateUrl: './html/detalle.component.html',
+        styleUrls: ['./css/detalle.component.css']
     }),
-    __metadata("design:paramtypes", [Object, router_1.ActivatedRoute, common_1.Location])
-], NoticiaDetalleComponent);
-exports.NoticiaDetalleComponent = NoticiaDetalleComponent;
-//# sourceMappingURL=noticia.Detalle.Component.js.map
+    __metadata("design:paramtypes", [noticias_service_1.NoticiasService, router_1.ActivatedRoute, common_1.Location])
+], DetalleComponent);
+exports.DetalleComponent = DetalleComponent;
+//# sourceMappingURL=detalle.component.js.map
